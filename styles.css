@@ -1,0 +1,309 @@
+body {
+    background-color: #000000;
+}
+
+.messi img{
+    margin-left: 15%;
+}
+
+.horizontal-list {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin-left: 60%;
+    color: #ffffff;
+    margin-top: -4rem;
+}
+.sigh img {
+    display: flex;
+    width: 15%;
+    height: auto;
+    margin-left: 20%;
+}
+
+.wahala p {
+    text-align: center;
+    width: 100%;
+
+}
+
+.wahala h1{
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+    color: #ffffff;
+}
+
+.wahala button{
+    text-align: center;
+    margin-left: 48%;
+    background-color: #dc143c;
+    color: #ffffff;
+}
+.wahala div{
+    margin-top: -13rem;
+}
+
+.wahala strong{
+    color: #dc143c;
+}
+
+.wahala i{
+    color: #ffffff;
+}
+nav{
+    background-color: #000000;
+}
+
+.tired{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    justify-content: flex-start;
+    gap:0.001rem;
+    background-color: #202020;
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    width: 15%;
+    color: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+.asake{
+     display: flex;
+    flex-direction: column;
+    margin-left: 35.4%;
+    justify-content: flex-start;
+    gap:0.001rem;
+    background-color: #dc143c;
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    width: 15%;
+    margin-top: -12.5rem;
+    color: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+.davido{
+   display: flex;
+    flex-direction: column;
+    margin-left: 50.8%;
+    justify-content: flex-start;
+    gap:0.001rem;
+    background-color: #202020;
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    width: 15%;
+    margin-top: -12.5rem;
+    color: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+span{
+    color: #dc143c;
+}
+.tems{
+    background-color: #000000;
+}
+.seyi{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0%;
+    align-items: center;
+    text-align: center;
+    background-color: #323232;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    width: 43%;
+    aspect-ratio: 1/1;
+    margin-top: -15rem;
+}
+.tinubu{
+    color: #dc143c;
+    font-size: 7rem;
+    margin-top: 26rem;
+}
+.akara{
+    color: #ffffff;
+    margin-left: 0%;
+}
+.lesley{
+    margin-left: 30%;
+    margin-top: -9rem;
+}
+.arlott{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    width: 60%;
+   
+    background-color: #202020;
+}
+.sora{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    background-color: #202020;
+}
+.hayabusa{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    margin-top: -1rem;
+    background-color: #202020;
+    width: 60%;
+}
+.karrie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 0.375rem;
+    margin-top: -1rem;
+    background-color: #202020;
+}
+.eudora{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 0.5rem;
+    max-width: 41.5rem;
+    margin-top: -30rem;
+    margin-left: 50%;
+    max-height: 15rem;
+    margin-left: 28%;
+}
+.edith{
+    color: #dc143c;
+    font-size: xx-large;
+}
+.thamuz{
+    color: #ffffff;
+    margin-left: 0%;
+}
+.ling{
+    color: #dc143c;
+    font-size: xx-large
+}
+.nana{
+    color: #ffffff;
+    margin-left: 0%;
+}
+.kadita{
+    color: #dc143c;
+    font-size: xx-large
+}
+.joy{
+    color: #ffffff;
+    margin-left: 0%;
+}
+.vale{
+    color: #dc143c;
+    font-size: xx-large
+}
+.nolan{
+    color: #ffffff;
+    margin-left: 0%;
+}
+.miya{
+    background-color: #000000;
+}
+.kimmy{
+    color: #ffffff;
+    margin-left: 23%;
+}
+.bruno{
+    background-color: #dc143c;
+    color: #ffffff;
+    margin-left: 62%;
+}
+.lapulapu{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 35rem;
+    margin: 2rem auto;
+}
+.lapulapu article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #202020;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.lapulapu img{
+    width: 100%;
+    max-width: 12.5rem;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+.lapulapu h3{
+    color: #ffffff;
+}
+.chou{
+    background-color: #000000;
+}
+.kalea{
+    width: 100%;
+    height: 9.375rem;
+    background-color: #202020;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.kalea button{
+    margin-right: 20%;
+    color: #ffffff;
+    background-color: #dc143c;
+}
+.kalea h2{
+    margin-left: 10%;
+    color: #ffffff;
+}
+.kalea p{
+    margin-left: 10%;
+    color: #ffffff;
+}
+.akai{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 2rem;
+    color: #ffffff;
+    justify-content: center;
+}
+.socials img{
+    width: 1%;
+    height: auto;
+}
+.socials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #202020;
+}
+.brody{
+    color: #ffffff;
+}
