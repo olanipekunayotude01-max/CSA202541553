@@ -19,11 +19,7 @@ body::before{
     z-index: -1;
 }
 
-@media (max-width: 768px) {
-    body::before {
-        background-position: center;
-        filter: blur(3px);
-    }
+
 }
 
 .items{
