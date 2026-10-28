@@ -1,4 +1,4 @@
-* {
+ * {
     box-sizing: border-box;
 }
 
@@ -76,7 +76,7 @@ p {
 
 form {
     width: min(100%, 24rem);
-    margin: 0 auto;
+    margin: 0 auto 0 max(0px, calc((100% - 70rem) / 2));
     padding: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 0.75rem;
