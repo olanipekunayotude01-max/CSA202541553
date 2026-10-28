@@ -16,8 +16,8 @@ padding-bottom: env(safe-area-inset-bottom, 0px);
 
 @media (prefers-color-scheme: dark) {
 :root {
---bg: #12161c;
---body: #1b212a;
+--bg: #fcfdff;
+--body: #e48a04;
 --screen: #0d1117;
 --screen-text: #f4f7fa;
 --key: #2a323d;
