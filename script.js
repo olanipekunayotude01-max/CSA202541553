@@ -5,13 +5,26 @@ const calculatorPanel = document.getElementById("calculator-panel");
 const calculatorClose = document.getElementById("calculator-close");
 const pictureToggle = document.querySelector(".picture-toggle");
 const picturePanel = document.getElementById("picture-panel");
+const pictureClose = document.getElementById("picture-close");
 
-if (pictureToggle && picturePanel) {
-  pictureToggle.setAttribute("aria-pressed", "false");
+if (pictureToggle && picturePanel && pictureClose) {
+  function setPictureOpen(isOpen) {
+    if (isOpen && calculatorPanel && calculatorToggle) {
+      calculatorPanel.hidden = true;
+      calculatorToggle.setAttribute("aria-expanded", "false");
+    }
+    picturePanel.hidden = !isOpen;
+    pictureToggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) pictureClose.focus();
+    else pictureToggle.focus();
+  }
+
   pictureToggle.addEventListener("click", () => {
-    const shouldShow = picturePanel.hidden;
-    picturePanel.hidden = !shouldShow;
-    pictureToggle.setAttribute("aria-pressed", String(shouldShow));
+    setPictureOpen(picturePanel.hidden);
+  });
+
+  pictureClose.addEventListener("click", () => {
+    setPictureOpen(false);
   });
 }
 
@@ -22,6 +35,10 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
   let justEvaluated = false;
 
   function setCalculatorOpen(isOpen) {
+    if (isOpen && picturePanel && pictureToggle) {
+      picturePanel.hidden = true;
+      pictureToggle.setAttribute("aria-expanded", "false");
+    }
     calculatorPanel.hidden = !isOpen;
     calculatorToggle.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) {
@@ -128,6 +145,15 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
   }
 
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (!calculatorPanel.hidden) setCalculatorOpen(false);
+      else if (picturePanel && !picturePanel.hidden && pictureToggle && pictureClose) {
+        picturePanel.hidden = true;
+        pictureToggle.setAttribute("aria-expanded", "false");
+        pictureToggle.focus();
+      }
+      return;
+    }
     if (calculatorPanel.hidden) return;
     if (/^[0-9.]$/.test(e.key)) inputNumber(e.key);
     else if (e.key === "+") chooseOperator("+");
@@ -136,6 +162,6 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
     else if (e.key === "/") { e.preventDefault(); chooseOperator("÷"); }
     else if (e.key === "Enter" || e.key === "=") { e.preventDefault(); equals(); }
     else if (e.key === "Backspace") backspace();
-    else if (e.key === "Escape") setCalculatorOpen(false);
   });
 }
+
