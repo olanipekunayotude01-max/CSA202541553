@@ -12,7 +12,7 @@ if (loginForm && loginError && usernameInput && passwordInput) {
 
         loginError.hidden = true;
 
-        if (username === "emmy" && password === "emmy") {
+        if (username === "adanny@fudutsinma.edu.ng" && password === "emmy") {
             window.location.href = "page2.html";
             return;
         }
