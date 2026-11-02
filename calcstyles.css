@@ -35,6 +35,7 @@ html, body { min-height: 100%; margin: 0; }
 
 body {
 min-height: 100vh;
+min-height: 100dvh;
 background: var(--bg);
 color: var(--text);
 font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
@@ -42,8 +43,9 @@ display: flex;
 }
 
 .sidebar {
-flex: 0 0 240px;
+flex: 0 0 clamp(13rem, 20vw, 17rem);
 min-height: 100vh;
+min-height: 100dvh;
 padding: 24px;
 background: var(--body);
 box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
@@ -82,6 +84,7 @@ outline: none;
 
 .workspace {
 flex: 1;
+min-width: 0;
 align-self: center;
 padding: clamp(24px, 6vw, 80px);
 text-align: center;
@@ -221,18 +224,33 @@ flex-direction: column;
 }
 
 .sidebar {
-flex-basis: auto;
+flex: 0 0 auto;
 width: 100%;
 min-height: auto;
-padding: 20px;
+padding: clamp(12px, 3vw, 20px);
+}
+
+.sidebar-nav {
+display: flex;
+flex-wrap: wrap;
+}
+
+.sidebar-nav a,
+.calculator-toggle,
+.picture-toggle {
+flex: 1 1 8rem;
 }
 
 .workspace {
 align-self: stretch;
 }
+}
 
-.sidebar {
-width: 100%;
-min-height: auto;
+@media (max-width: 380px) {
+.sidebar-nav a,
+.calculator-toggle,
+.picture-toggle {
+flex-basis: calc(50% - 0.5rem);
+text-align: center;
 }
 }
