@@ -7,6 +7,28 @@
 <link rel="stylesheet" href="calcstyles.css">
 </head>
 <body>
+<aside class="sidebar">
+<nav class="sidebar-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<button class="calculator-toggle" id="calculator-toggle" type="button" aria-controls="calculator-panel" aria-expanded="false">Calculator</button>
+<button class="picture-toggle" type="button">Picture</button>
+</nav>
+</aside>
+
+<main class="workspace">
+<h1>Welcome</h1>
+<p>Select an option from the sidebar.</p>
+
+<figure class="picture-panel" id="picture-panel" hidden>
+  <img src="my-photo.jpg" alt="Student profile" />
+</figure>
+</main>
+
+<section class="calculator-panel" id="calculator-panel" aria-label="Calculator" hidden>
+<div class="panel-header">
+<h2>Calculator</h2>
+<button class="panel-close" id="calculator-close" type="button" aria-label="Close calculator">&times;</button>
+</div>
 <div class="calc">
 <div class="screen">
 <div class="history" id="history"></div>
