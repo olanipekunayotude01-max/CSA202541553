@@ -1,10 +1,31 @@
 const displayEl = document.getElementById("display");
 const historyEl = document.getElementById("history");
+const calculatorToggle = document.getElementById("calculator-toggle");
+const calculatorPanel = document.getElementById("calculator-panel");
+const calculatorClose = document.getElementById("calculator-close");
 
 let current = "0";
 let previous = null;
 let operator = null;
 let justEvaluated = false;
+
+function setCalculatorOpen(isOpen) {
+calculatorPanel.hidden = !isOpen;
+calculatorToggle.setAttribute("aria-expanded", String(isOpen));
+if (isOpen) {
+document.querySelector(".keys button").focus();
+} else {
+calculatorToggle.focus();
+}
+}
+
+calculatorToggle.addEventListener("click", () => {
+setCalculatorOpen(calculatorPanel.hidden);
+});
+
+calculatorClose.addEventListener("click", () => {
+setCalculatorOpen(false);
+});
 
 function update() {
 displayEl.textContent = current;
@@ -93,6 +114,7 @@ else if (btn.dataset.action === "percent") percent();
 
 // Keyboard support
 document.addEventListener("keydown", (e) => {
+if (calculatorPanel.hidden) return;
 if (/^[0-9.]$/.test(e.key)) inputNumber(e.key);
 else if (e.key === "+") chooseOperator("+");
 else if (e.key === "-") chooseOperator("−");
@@ -100,5 +122,5 @@ else if (e.key === "*") chooseOperator("×");
 else if (e.key === "/") { e.preventDefault(); chooseOperator("÷"); }
 else if (e.key === "Enter" || e.key === "=") { e.preventDefault(); equals(); }
 else if (e.key === "Backspace") backspace();
-else if (e.key === "Escape") clearAll();
+else if (e.key === "Escape") setCalculatorOpen(false);
 });
