@@ -37,7 +37,7 @@ footer {
 
 .messi {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 0.75rem clamp(1rem, 5vw, 4rem);
 }
 
@@ -49,7 +49,7 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: #000000;
+    color: #eee8e8;
     font-size: clamp(1rem, 2vw, 1.25rem);
 }
 
@@ -144,19 +144,25 @@ input {
     font-size: 1rem;
 }
 
+footer {
+    margin-top: auto;
+    background-color: black;
+}
+
 .akai {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 0.75rem 2rem;
     list-style: none;
     margin: 0;
-    padding: 1rem;
+    padding: 1rem clamp(1rem, 4vw, 2rem);
     color: #ffffff;
-    background-color: #000000;
     text-align: center;
-    font-size: clamp(1.125rem, 3vw, 2rem);
+    font-size: clamp(1rem, 2vw, 1.8rem);
 }
+
 
 @media (max-width: 900px) {
     .brand {
@@ -188,7 +194,48 @@ input {
     }
 }
 
+.about-page {
+    background: linear-gradient(180deg, #071b3a 0%, #0d254f 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 2rem 1.25rem 3rem;
+    font-family: Arial, sans-serif;
+}
+
+.about-page h1 {
+    width: min(100%, 1100px);
+    margin: 0 auto 1rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+}
+
+.about-page p,
+.about-page ul {
+    width: min(100%, 1100px);
+    margin: 0 auto 1rem;
+    padding: 0 0 0 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.about-page ul {
+    padding-left: 2rem;
+}
+
+.about-page li {
+    margin-bottom: 0.75rem;
+}
+
 @media (max-width: 600px) {
+    .about-page {
+        padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .about-page p,
+    .about-page ul {
+        padding-left: 1rem;
+    }
+
     .messi {
         padding-top: 1rem;
     }
@@ -216,95 +263,8 @@ input {
 
     .akai {
         gap: 0.5rem 1rem;
+        font-size: clamp(0.9rem, 4vw, 1.2rem);
     }
 }
 
-}
-.nolan{
-    color: #ffffff;
-    margin-left: 0%;
-}
-.miya{
-    background-color: #000000;
-}
-.kimmy{
-    color: #ffffff;
-    margin-left: 23%;
-}
-.bruno{
-    background-color: #dc143c;
-    color: #ffffff;
-    margin-left: 62%;
-}
-.lapulapu{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    width: 35rem;
-    margin: 2rem auto;
-}
-.lapulapu article{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #202020;
-    padding: 1rem;
-    border-radius: 0.5rem;
-}
-.lapulapu img{
-    width: 100%;
-    max-width: 12.5rem;
-    height: auto;
-    object-fit: cover;
-    border-radius: 0.25rem;
-}
-.lapulapu h3{
-    color: #ffffff;
-}
-.chou{
-    background-color: #000000;
-}
-.kalea{
-    width: 100%;
-    height: 9.375rem;
-    background-color: #202020;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.kalea button{
-    margin-right: 20%;
-    color: #ffffff;
-    background-color: #dc143c;
-}
-.kalea h2{
-    margin-left: 10%;
-    color: #ffffff;
-}
-.kalea p{
-    margin-left: 10%;
-    color: #ffffff;
-}
-.akai{
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 2rem;
-    color: #ffffff;
-    justify-content: center;
-}
-.socials img{
-    width: 1%;
-    height: auto;
-}
-.socials{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    background-color: #202020;
-}
-.brody{
-    color: #ffffff;
-}
+
