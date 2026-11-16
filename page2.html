@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculator</title>
+<link rel="stylesheet" href="calcstyles.css">
+</head>
+<body>
+<aside class="sidebar">
+<nav class="sidebar-nav" aria-label="Main navigation">
+<a href="index.html">Home</a>
+<button class="calculator-toggle" id="calculator-toggle" type="button" aria-controls="calculator-panel" aria-expanded="false">Calculator</button>
+<button class="picture-toggle" id="picture-toggle" type="button" aria-controls="picture-panel" aria-expanded="false">Picture</button>
+</nav>
+</aside>
+
+<main class="workspace">
+<h1>Welcome</h1>
+<p>Select an option from the sidebar.</p>
+
+</main>
+
+<section class="picture-panel" id="picture-panel" aria-label="Picture" hidden>
+<div class="panel-header">
+<h2>Picture</h2>
+<button class="panel-close" id="picture-close" type="button" aria-label="Close picture">&times;</button>
+</div>
+<figure class="picture-content">
+<img src="my-photo.jpg" alt="Student profile" />
+</figure>
+</section>
+
+<section class="calculator-panel" id="calculator-panel" aria-label="Calculator" hidden>
+<div class="panel-header">
+<h2>Calculator</h2>
+<button class="panel-close" id="calculator-close" type="button" aria-label="Close calculator">&times;</button>
+</div>
+<div class="calc">
+<div class="screen">
+<div class="history" id="history"></div>
+<div class="display" id="display">0</div>
+</div>
+<div class="keys">
+<button class="clear" data-action="clear">C</button>
+<button data-action="back">⌫</button>
+<button data-action="percent">%</button>
+<button class="op" data-op="÷">÷</button>
+
+<button data-num="7">7</button>
+<button data-num="8">8</button>
+<button data-num="9">9</button>
+<button class="op" data-op="×">×</button>
+
+<button data-num="4">4</button>
+<button data-num="5">5</button>
+<button data-num="6">6</button>
+<button class="op" data-op="−">−</button>
+
+<button data-num="1">1</button>
+<button data-num="2">2</button>
+<button data-num="3">3</button>
+<button class="op" data-op="+">+</button>
+
+<button class="wide" data-num="0">0</button>
+<button data-num=".">.</button>
+<button class="op" data-action="equals">=</button>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
