@@ -9,9 +9,13 @@
 <body>
 <aside class="sidebar">
 <nav class="sidebar-nav" aria-label="Main navigation">
-<a href="index.html">Home</a>
+<button class="sidebar-action" id="admissions-toggle" type="button" aria-controls="admissions-panel" aria-expanded="false">Admissions</button>
+<button class="sidebar-action" type="button">News and Events</button>
+<button class="sidebar-action" type="button">Results</button>
+<button class="sidebar-action" type="button">Timetable</button>
 <button class="calculator-toggle" id="calculator-toggle" type="button" aria-controls="calculator-panel" aria-expanded="false">Calculator</button>
 <button class="picture-toggle" id="picture-toggle" type="button" aria-controls="picture-panel" aria-expanded="false">Picture</button>
+<button class="logout-button" id="logout-button" type="button">Logout</button>
 </nav>
 </aside>
 
@@ -20,6 +24,32 @@
 <p>Select an option from the sidebar.</p>
 
 </main>
+
+<section class="admissions-panel" id="admissions-panel" aria-label="Admissions" hidden>
+<div class="panel-header">
+<h2>Admissions</h2>
+<button class="panel-close" id="admissions-close" type="button" aria-label="Close admissions">&times;</button>
+</div>
+<p class="admissions-intro">We welcome families interested in joining Olanipekun International Academy. Here is an overview of the application process.</p>
+<section class="admissions-section" aria-labelledby="admissions-process-heading">
+<h3 id="admissions-process-heading">Application process</h3>
+<ol>
+<li>Contact the school office to ask about available places and entry requirements.</li>
+<li>Complete an admission application and provide the requested documents.</li>
+<li>Attend any assessment or meeting arranged by the school.</li>
+<li>Follow the school's instructions to confirm an offer and complete enrolment.</li>
+</ol>
+</section>
+<section class="admissions-section" aria-labelledby="admissions-documents-heading">
+<h3 id="admissions-documents-heading">Documents to prepare</h3>
+<ul>
+<li>Recent school reports or academic records</li>
+<li>Birth certificate or other proof of age</li>
+<li>Recent passport photograph</li>
+<li>Parent or guardian contact information</li>
+</ul>
+</section>
+</section>
 
 <section class="picture-panel" id="picture-panel" aria-label="Picture" hidden>
 <div class="panel-header">

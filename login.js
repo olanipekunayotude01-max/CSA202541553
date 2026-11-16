@@ -9,10 +9,12 @@ if (loginForm && loginError && usernameInput && passwordInput) {
 
         const username = usernameInput.value.trim().toLowerCase();
         const password = passwordInput.value.trim();
+        const role = loginForm.querySelector('input[name="login-role"]:checked')?.value ?? "student";
 
         loginError.hidden = true;
 
         if (username === "adanny@fudutsinma.edu.ng" && password === "emmy") {
+            sessionStorage.setItem("portalRole", role);
             window.location.href = "page2.html";
             return;
         }

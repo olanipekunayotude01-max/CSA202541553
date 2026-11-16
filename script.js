@@ -1,14 +1,56 @@
 const displayEl = document.getElementById("display");
 const historyEl = document.getElementById("history");
+const admissionsToggle = document.getElementById("admissions-toggle");
+const admissionsPanel = document.getElementById("admissions-panel");
+const admissionsClose = document.getElementById("admissions-close");
 const calculatorToggle = document.getElementById("calculator-toggle");
 const calculatorPanel = document.getElementById("calculator-panel");
 const calculatorClose = document.getElementById("calculator-close");
 const pictureToggle = document.querySelector(".picture-toggle");
 const picturePanel = document.getElementById("picture-panel");
 const pictureClose = document.getElementById("picture-close");
+const logoutButton = document.getElementById("logout-button");
+
+if (logoutButton) {
+  logoutButton.addEventListener("click", () => {
+    sessionStorage.removeItem("portalRole");
+    window.location.replace("index.html");
+  });
+}
+
+if (admissionsToggle && admissionsPanel && admissionsClose) {
+  function setAdmissionsOpen(isOpen) {
+    if (isOpen) {
+      if (calculatorPanel && calculatorToggle) {
+        calculatorPanel.hidden = true;
+        calculatorToggle.setAttribute("aria-expanded", "false");
+      }
+      if (picturePanel && pictureToggle) {
+        picturePanel.hidden = true;
+        pictureToggle.setAttribute("aria-expanded", "false");
+      }
+    }
+    admissionsPanel.hidden = !isOpen;
+    admissionsToggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) admissionsClose.focus();
+    else admissionsToggle.focus();
+  }
+
+  admissionsToggle.addEventListener("click", () => {
+    setAdmissionsOpen(admissionsPanel.hidden);
+  });
+
+  admissionsClose.addEventListener("click", () => {
+    setAdmissionsOpen(false);
+  });
+}
 
 if (pictureToggle && picturePanel && pictureClose) {
   function setPictureOpen(isOpen) {
+    if (isOpen && admissionsPanel && admissionsToggle) {
+      admissionsPanel.hidden = true;
+      admissionsToggle.setAttribute("aria-expanded", "false");
+    }
     if (isOpen && calculatorPanel && calculatorToggle) {
       calculatorPanel.hidden = true;
       calculatorToggle.setAttribute("aria-expanded", "false");
@@ -35,6 +77,10 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
   let justEvaluated = false;
 
   function setCalculatorOpen(isOpen) {
+    if (isOpen && admissionsPanel && admissionsToggle) {
+      admissionsPanel.hidden = true;
+      admissionsToggle.setAttribute("aria-expanded", "false");
+    }
     if (isOpen && picturePanel && pictureToggle) {
       picturePanel.hidden = true;
       pictureToggle.setAttribute("aria-expanded", "false");
@@ -146,7 +192,12 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (!calculatorPanel.hidden) setCalculatorOpen(false);
+      if (admissionsPanel && !admissionsPanel.hidden && admissionsToggle) {
+        admissionsPanel.hidden = true;
+        admissionsToggle.setAttribute("aria-expanded", "false");
+        admissionsToggle.focus();
+      }
+      else if (!calculatorPanel.hidden) setCalculatorOpen(false);
       else if (picturePanel && !picturePanel.hidden && pictureToggle && pictureClose) {
         picturePanel.hidden = true;
         pictureToggle.setAttribute("aria-expanded", "false");

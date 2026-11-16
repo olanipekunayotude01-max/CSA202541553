@@ -20,6 +20,11 @@
 </article>
 
 <form id="login-form">
+    <fieldset class="role-switch">
+        <legend>Sign in as:</legend>
+        <label class="role-option"><input type="radio" name="login-role" value="student" checked><span>Student</span></label>
+        <label class="role-option"><input type="radio" name="login-role" value="staff"><span>Staff</span></label>
+    </fieldset>
     <label for="username" class="email">Username:</label><br>
     <input type="text" id="username" name="username" autocomplete="username" required><br><br>
     <label for="password" class="password">Password:</label><br>
