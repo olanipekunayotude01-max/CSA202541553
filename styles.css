@@ -1,223 +1,216 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
 body {
-    background-color: #000000;
-}
-
-.messi img{
-    margin-left: 15%;
-}
-
-.horizontal-list {
+    position: relative;
     display: flex;
-    gap: 1.25rem;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+body::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    background-image: url("img.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transform: scale(1.02);
+}
+
+nav,
+main,
+footer {
+    width: 100%;
+}
+
+.messi {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.75rem clamp(1rem, 5vw, 4rem);
+}
+
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
     list-style: none;
-    margin-left: 60%;
-    color: #ffffff;
-    margin-top: -4rem;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-size: clamp(1rem, 2vw, 1.25rem);
 }
-.sigh img {
+
+main {
+    flex: 1;
+    padding: clamp(1.5rem, 5vh, 4rem) clamp(1rem, 5vw, 4rem) 3rem;
+}
+
+.brand {
     display: flex;
-    width: 15%;
+    justify-content: flex-start;
+    width: min(100%, 70rem);
+    margin: 0 auto 1.5rem;
+    padding-left: clamp(0.5rem, 2vw, 2rem);
+}
+
+.logo {
+    width: clamp(120px, 18vw, 220px);
     height: auto;
-    margin-left: 20%;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
 }
 
-.wahala p {
-    text-align: center;
+article {
+    max-width: 70rem;
+    margin: 0 auto 2rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.25rem, 8vw, 7rem);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    color: #ffffff;
+}
+
+p {
+    margin: 1rem 0 0;
+    color: aliceblue;
+    font-size: clamp(1.25rem, 3.5vw, 3rem);
+}
+
+form {
+    width: min(100%, 24rem);
+    margin: 0 auto;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3);
+}
+
+.email,
+.password {
+    color: aliceblue;
+}
+
+input {
     width: 100%;
-
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #777777;
+    border-radius: 0.25rem;
+    font: inherit;
 }
 
-.wahala h1{
+.login-btn {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border: 0;
+    background: transparent;
+    color: aliceblue;
     text-align: center;
-    width: 100%;
-    margin-top: 1rem;
-    color: #ffffff;
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.35rem;
+    cursor: pointer;
 }
 
-.wahala button{
-    text-align: center;
-    margin-left: 48%;
-    background-color: #dc143c;
-    color: #ffffff;
-}
-.wahala div{
-    margin-top: -13rem;
+.login-btn:hover,
+.login-btn:focus-visible {
+    background: #000000;
 }
 
-.wahala strong{
-    color: #dc143c;
+#login-error {
+    margin: 0.75rem 0 0;
+    font-size: 1rem;
 }
 
-.wahala i{
+.akai {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
     color: #ffffff;
-}
-nav{
     background-color: #000000;
+    text-align: center;
+    font-size: clamp(1.125rem, 3vw, 2rem);
 }
 
-.tired{
-    display: flex;
-    flex-direction: column;
-    margin-left: 20%;
-    justify-content: flex-start;
-    gap:0.001rem;
-    background-color: #202020;
-    padding: 1.5rem;
-    border-radius: 0.375rem;
-    box-sizing: border-box;
-    width: 15%;
-    color: #ffffff;
-    position: relative;
-    z-index: 10;
+@media (max-width: 900px) {
+    .brand {
+        width: 100%;
+        padding-left: 0;
+        justify-content: center;
+    }
+
+    .logo {
+        width: clamp(100px, 28vw, 180px);
+    }
+
+    article {
+        text-align: center;
+    }
+
+    .messi {
+        justify-content: center;
+    }
+
+    .items {
+        justify-content: center;
+    }
 }
-.asake{
-     display: flex;
-    flex-direction: column;
-    margin-left: 35.4%;
-    justify-content: flex-start;
-    gap:0.001rem;
-    background-color: #dc143c;
-    padding: 1.5rem;
-    border-radius: 0.375rem;
-    box-sizing: border-box;
-    width: 15%;
-    margin-top: -12.5rem;
-    color: #ffffff;
-    position: relative;
-    z-index: 10;
+
+@media (max-width: 600px) {
+    .messi {
+        padding-top: 1rem;
+    }
+
+    .items {
+        justify-content: center;
+        gap: 0.5rem 1.25rem;
+    }
+
+    main {
+        padding-top: 2rem;
+    }
+
+    h1 {
+        font-size: clamp(2rem, 10vw, 3.75rem);
+    }
+
+    p {
+        font-size: clamp(1.1rem, 6vw, 2rem);
+    }
+
+    form {
+        padding: 1.25rem;
+    }
+
+    .akai {
+        gap: 0.5rem 1rem;
+    }
 }
-.davido{
-   display: flex;
-    flex-direction: column;
-    margin-left: 50.8%;
-    justify-content: flex-start;
-    gap:0.001rem;
-    background-color: #202020;
-    padding: 1.5rem;
-    border-radius: 0.375rem;
-    box-sizing: border-box;
-    width: 15%;
-    margin-top: -12.5rem;
-    color: #ffffff;
-    position: relative;
-    z-index: 10;
-}
-span{
-    color: #dc143c;
-}
-.tems{
-    background-color: #000000;
-}
-.seyi{
-    display: flex;
-    flex-direction: column;
-    margin-left: 0%;
-    align-items: center;
-    text-align: center;
-    background-color: #323232;
-    box-sizing: border-box;
-    border-radius: 0.375rem;
-    width: 43%;
-    aspect-ratio: 1/1;
-    margin-top: -15rem;
-}
-.tinubu{
-    color: #dc143c;
-    font-size: 7rem;
-    margin-top: 26rem;
-}
-.akara{
-    color: #ffffff;
-    margin-left: 0%;
-}
-.lesley{
-    margin-left: 30%;
-    margin-top: -9rem;
-}
-.arlott{
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    border-radius: 0.375rem;
-    width: 60%;
-   
-    background-color: #202020;
-}
-.sora{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    border-radius: 0.375rem;
-    background-color: #202020;
-}
-.hayabusa{
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    border-radius: 0.375rem;
-    margin-top: -1rem;
-    background-color: #202020;
-    width: 60%;
-}
-.karrie{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    border-radius: 0.375rem;
-    margin-top: -1rem;
-    background-color: #202020;
-}
-.eudora{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 0.5rem;
-    max-width: 41.5rem;
-    margin-top: -30rem;
-    margin-left: 50%;
-    max-height: 15rem;
-    margin-left: 28%;
-}
-.edith{
-    color: #dc143c;
-    font-size: xx-large;
-}
-.thamuz{
-    color: #ffffff;
-    margin-left: 0%;
-}
-.ling{
-    color: #dc143c;
-    font-size: xx-large
-}
-.nana{
-    color: #ffffff;
-    margin-left: 0%;
-}
-.kadita{
-    color: #dc143c;
-    font-size: xx-large
-}
-.joy{
-    color: #ffffff;
-    margin-left: 0%;
-}
-.vale{
-    color: #dc143c;
-    font-size: xx-large
+
 }
 .nolan{
     color: #ffffff;
