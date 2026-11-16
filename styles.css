@@ -305,6 +305,22 @@ main h1 {
     margin-bottom: 1rem;
 }
 
+.staff-page {
+    display: grid;
+    place-items: center;
+    min-height: 100svh;
+    text-align: center;
+}
+
+.staff-page h1 {
+    width: min(100%, 20ch);
+    margin: 0;
+    font-size: clamp(1.75rem, 6vw, 4rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+}
+
 main p,
 main ul {
     font-size: clamp(1rem, 2vw, 1.2rem);
@@ -367,6 +383,43 @@ main a {
     .akai {
         gap: 0.5rem 1rem;
         font-size: clamp(0.9rem, 4vw, 1.2rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .login-page main {
+        padding: 1.5rem 1rem 2rem;
+    }
+
+    .login-page .brand {
+        margin-bottom: 1rem;
+    }
+
+    .login-page article {
+        width: 100%;
+        margin-bottom: 1.25rem;
+        padding: 0;
+        text-align: center;
+    }
+
+    .login-page main h1 {
+        font-size: clamp(1.75rem, 8vw, 2.75rem);
+        line-height: 1.1;
+        overflow-wrap: normal;
+    }
+
+    .login-page article p {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+        line-height: 1.4;
+    }
+
+    .login-page form {
+        width: min(100%, 24rem);
+        padding: clamp(1rem, 5vw, 1.5rem);
+    }
+
+    .login-page .role-switch {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

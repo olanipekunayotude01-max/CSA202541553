@@ -15,7 +15,7 @@ if (loginForm && loginError && usernameInput && passwordInput) {
 
         if (username === "adanny@fudutsinma.edu.ng" && password === "emmy") {
             sessionStorage.setItem("portalRole", role);
-            window.location.href = "page2.html";
+            window.location.href = role === "staff" ? "staff.html" : "page2.html";
             return;
         }
 
