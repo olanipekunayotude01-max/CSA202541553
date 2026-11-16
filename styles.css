@@ -67,8 +67,10 @@ main {
 }
 
 .logo {
-    width: clamp(120px, 18vw, 220px);
+    width: clamp(140px, 20vw, 260px);
+    max-width: 100%;
     height: auto;
+    display: block;
     border-radius: 50%;
     border: 3px solid rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.85);
@@ -164,7 +166,7 @@ input {
     }
 
     .logo {
-        width: clamp(100px, 28vw, 180px);
+        width: clamp(120px, 30vw, 200px);
     }
 
     article {
@@ -177,6 +179,12 @@ input {
 
     .items {
         justify-content: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo {
+        width: clamp(110px, 42vw, 160px);
     }
 }
 
