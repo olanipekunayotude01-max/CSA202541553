@@ -45,7 +45,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 0.75rem;
+    gap: 1rem 1.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -99,6 +99,16 @@ article {
     padding-left: clamp(0.5rem, 2vw, 2rem);
 }
 
+.login-page article {
+    padding: 1rem clamp(1rem, 2vw, 2rem);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    background: rgba(0, 0, 0, 0.72);
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.3);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
 h1 {
     margin: 0;
     font-size: clamp(2.25rem, 8vw, 7rem);
@@ -150,10 +160,20 @@ form {
     cursor: pointer;
 }
 
-.role-option:focus-within,
+.role-option:focus-within {
+    outline: 2px solid #ffd166;
+    outline-offset: 2px;
+}
+
 .role-option:has(input:checked) {
     border-color: #ffd166;
-    background: rgba(255, 209, 102, 0.16);
+    background: #ffd166;
+    color: #071b3a;
+    font-weight: bold;
+}
+
+.role-option:has(input:checked) input[type="radio"] {
+    accent-color: #071b3a;
 }
 
 .role-option input[type="radio"] {
@@ -165,7 +185,8 @@ form {
 
 .email,
 .password {
-    color: aliceblue;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 input {
@@ -178,22 +199,30 @@ input {
 }
 
 .login-btn {
-    display: inline-block;
+    display: block;
+    width: 100%;
+    min-height: 3rem;
     padding: 0.75rem 1.25rem;
     border: 0;
-    background: transparent;
-    color: aliceblue;
+    background: #123b70;
+    color: #ffffff;
     text-align: center;
     font: inherit;
     font-weight: bold;
     text-decoration: none;
-    border-radius: 0.35rem;
+    border-radius: 0.45rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.login-btn:hover,
+.login-btn:hover {
+    background: #0b2f5b;
+}
+
 .login-btn:focus-visible {
-    background: #000000;
+    background: #0b2f5b;
+    outline: 3px solid #ffd166;
+    outline-offset: 2px;
 }
 
 #login-error {
@@ -203,7 +232,9 @@ input {
 
 footer {
     margin-top: auto;
-    background-color: black;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    background-color: #071b3a;
+    box-shadow: 0 -0.75rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .akai {
