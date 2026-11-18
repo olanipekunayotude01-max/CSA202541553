@@ -7,11 +7,17 @@
 <link rel="stylesheet" href="calcstyles.css">
 </head>
 <body>
-<aside class="sidebar">
-<nav class="sidebar-nav" aria-label="Main navigation">
-<button class="sidebar-action" id="admissions-toggle" type="button" aria-controls="admissions-panel" aria-expanded="false">Admissions</button>
-<button class="sidebar-action" id="results-toggle" type="button" aria-controls="results-panel" aria-expanded="false">Results</button>
-<button class="sidebar-action" id="timetable-toggle" type="button" aria-controls="timetable-panel" aria-expanded="false">Timetable</button>
+<header class="topbar">
+<button class="menu-toggle" id="menu-toggle" type="button" aria-controls="navigation-drawer" aria-expanded="false" aria-label="Open navigation menu">
+<span></span><span></span><span></span>
+</button>
+</header>
+<button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close navigation menu" hidden></button>
+<aside class="navigation-drawer" id="navigation-drawer">
+<nav class="drawer-nav" aria-label="Main navigation">
+<button class="nav-action" id="admissions-toggle" type="button" aria-controls="admissions-panel" aria-expanded="false">Admissions</button>
+<button class="nav-action" id="results-toggle" type="button" aria-controls="results-panel" aria-expanded="false">Results</button>
+<button class="nav-action" id="timetable-toggle" type="button" aria-controls="timetable-panel" aria-expanded="false">Timetable</button>
 <button class="calculator-toggle" id="calculator-toggle" type="button" aria-controls="calculator-panel" aria-expanded="false">Calculator</button>
 <button class="picture-toggle" id="picture-toggle" type="button" aria-controls="picture-panel" aria-expanded="false">News and Events</button>
 <button class="logout-button" id="logout-button" type="button">Logout</button>
@@ -20,8 +26,26 @@
 
 <main class="workspace">
 <h1><img class="workspace-logo" src="school-logo.jpg" alt="Olanipekun International Academy"></h1>
-<p>Select an option from the sidebar.</p>
-
+<section class="welcome-content" aria-labelledby="welcome-heading">
+<p class="welcome-eyebrow">OLANIPEKUN INTERNATIONAL ACADEMY</p>
+<h2 id="welcome-heading">Empowering Minds, Shaping Futures</h2>
+<p class="welcome-intro">Welcome to your student portal. Find the tools you need to stay informed, follow your progress, and make the most of every school day.</p>
+<div class="portal-highlights">
+<article class="portal-card">
+<h3>Keep learning</h3>
+<p>Build strong foundations, explore new ideas, and grow through every lesson.</p>
+</article>
+<article class="portal-card">
+<h3>Track your progress</h3>
+<p>Visit Results to review your saved subject scores and see how you are doing.</p>
+</article>
+<article class="portal-card">
+<h3>Plan your school day</h3>
+<p>Check the timetable to see what classes are coming up and get ready for the day.</p>
+</article>
+</div>
+<p class="welcome-hint">Open the menu to explore your portal.</p>
+</section>
 </main>
 
 <section class="results-panel" id="results-panel" aria-label="Check student results" hidden>

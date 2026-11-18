@@ -20,6 +20,42 @@ const logoutButton = document.getElementById("logout-button");
 const timetableToggle = document.getElementById("timetable-toggle");
 const timetablePanel = document.getElementById("timetable-panel");
 const timetableClose = document.getElementById("timetable-close");
+const menuToggle = document.getElementById("menu-toggle");
+const navigationDrawer = document.getElementById("navigation-drawer");
+const drawerBackdrop = document.getElementById("drawer-backdrop");
+
+if (menuToggle && navigationDrawer && drawerBackdrop) {
+  function setDrawerOpen(isOpen) {
+    navigationDrawer.classList.toggle("is-open", isOpen);
+    drawerBackdrop.hidden = !isOpen;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    if (isOpen) {
+      const firstAction = navigationDrawer.querySelector("button");
+      if (firstAction) firstAction.focus();
+    } else {
+      menuToggle.focus();
+    }
+  }
+
+  menuToggle.addEventListener("click", () => {
+    setDrawerOpen(!navigationDrawer.classList.contains("is-open"));
+  });
+
+  drawerBackdrop.addEventListener("click", () => {
+    setDrawerOpen(false);
+  });
+
+  navigationDrawer.addEventListener("click", (event) => {
+    if (event.target.closest("button")) setDrawerOpen(false);
+  }, true);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navigationDrawer.classList.contains("is-open")) {
+      setDrawerOpen(false);
+    }
+  });
+}
 
 function hideResultsPanel() {
   if (!resultsPanel || !resultsToggle) return;

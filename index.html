@@ -19,6 +19,11 @@
 <P>Empowering Minds, Shaping Futures</P>
 </article>
 
+<div class="auth-mode-switch" role="group" aria-label="Account options">
+    <button id="show-login" type="button" aria-pressed="true">Sign in</button>
+    <button id="show-register" type="button" aria-pressed="false">Create account</button>
+</div>
+
 <form id="login-form">
     <fieldset class="role-switch">
         <legend>Sign in as:</legend>
@@ -27,10 +32,30 @@
     </fieldset>
     <label for="username" class="email">Username:</label><br>
     <input type="text" id="username" name="username" autocomplete="username" required><br><br>
-    <label for="password" class="password">Password:</label><br>
+    <label for="password" class="password" id="password-label">Admission number:</label><br>
     <input type="password" id="password" name="password" autocomplete="current-password" required><br><br>
     <button type="submit" class="login-btn">Login</button>
     <p id="login-error" role="alert" hidden>Incorrect username or password.</p>
+    <p id="login-message" role="status" aria-live="polite" hidden></p>
+</form>
+
+<form id="register-form" hidden>
+    <fieldset class="role-switch">
+        <legend>Create account as:</legend>
+        <label class="role-option"><input type="radio" name="account-role" value="student" checked><span>Student</span></label>
+        <label class="role-option"><input type="radio" name="account-role" value="staff"><span>Staff</span></label>
+    </fieldset>
+    <label for="register-username" class="email">Username:</label><br>
+    <input type="text" id="register-username" name="username" autocomplete="username" required><br><br>
+    <p class="auth-note" id="admission-number-note">A unique four-digit admission number will be assigned after account creation.</p>
+    <div id="staff-password-fields" hidden>
+        <label for="register-password" class="password">Password (at least 8 characters):</label><br>
+        <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" required disabled><br><br>
+        <label for="register-password-confirm" class="password">Confirm password:</label><br>
+        <input type="password" id="register-password-confirm" name="password-confirm" autocomplete="new-password" minlength="8" required disabled><br><br>
+    </div>
+    <button type="submit" class="login-btn">Create account</button>
+    <p id="register-message" role="status" aria-live="polite" hidden></p>
 </form>
 
 </main>
