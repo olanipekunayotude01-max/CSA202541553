@@ -3,20 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OLANIPEKUN INTERNATIONAL ACADEMY</title>
+<title>Enter Student Results | Olanipekun International Academy</title>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<main class="staff-page">
-<h1>omo i don tire we go again tommorow</h1>
+<body class="results-page">
+<header class="results-header">
+    <a class="results-brand" href="index.html">
+        <img src="school-logo.jpg" alt="" class="results-logo">
+        <span>Olanipekun International Academy</span>
+    </a>
+    <a class="results-home" href="index.html">Back to portal</a>
+</header>
+
+<main class="results-main">
+    <section class="results-intro" aria-labelledby="results-title">
+        <p class="results-eyebrow">STAFF PORTAL</p>
+        <h1 id="results-title">Student results</h1>
+        <p>Enter a student's details and add one or more subject scores.</p>
+    </section>
+
+    <section class="results-card" aria-labelledby="entry-title">
+        <h2 id="entry-title">Enter results</h2>
+        <form id="results-form">
+            <div class="student-fields">
+                <div class="field">
+                    <label for="student-name">Student name</label>
+                    <input id="student-name" name="studentName" type="text" autocomplete="name" required>
+                </div>
+                <div class="field">
+                    <label for="student-id">Admission number</label>
+                    <input id="student-id" name="studentId" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="student-class">Class</label>
+                    <select id="student-class" name="studentClass" required>
+                        <option value="">Select class</option>
+                        <option>JSS 1</option>
+                        <option>JSS 2</option>
+                        <option>JSS 3</option>
+                        <option>SS 1</option>
+                        <option>SS 2</option>
+                        <option>SS 3</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="academic-session">Academic session</label>
+                    <input id="academic-session" name="session" type="text" placeholder="e.g. 2025/2026" required>
+                </div>
+                <div class="field">
+                    <label for="term">Term</label>
+                    <select id="term" name="term" required>
+                        <option value="">Select term</option>
+                        <option>First term</option>
+                        <option>Second term</option>
+                        <option>Third term</option>
+                    </select>
+                </div>
+            </div>
+
+            <fieldset class="subject-fieldset">
+                <legend>Subject scores</legend>
+                <p class="score-hint">Enter each subject's score out of 100.</p>
+                <div id="subject-rows" class="subject-rows">
+                    <div class="subject-row">
+                        <div class="field">
+                            <label for="subject-1">Subject</label>
+                            <input id="subject-1" name="subject" type="text" placeholder="e.g. Mathematics" required>
+                        </div>
+                        <div class="field">
+                            <label for="score-1">Score (out of 100)</label>
+                            <input id="score-1" name="score" type="number" min="0" max="100" step="1" inputmode="numeric" required>
+                        </div>
+                        <button class="remove-subject" type="button" aria-label="Remove this subject" disabled>&times;</button>
+                    </div>
+                </div>
+                <button id="add-subject" class="add-subject" type="button">+ Add another subject</button>
+            </fieldset>
+
+            <div class="results-form-actions">
+                <button class="save-results" type="submit">Save results</button>
+                <p id="results-message" class="results-message" role="status" aria-live="polite"></p>
+            </div>
+        </form>
+    </section>
+
+    <section class="results-card saved-card" aria-labelledby="saved-title">
+        <div class="saved-heading">
+            <div>
+                <h2 id="saved-title">Saved results</h2>
+                <p>Results are saved in this browser on this device.</p>
+            </div>
+            <label class="search-field" for="results-search">
+                <span>Find a student</span>
+                <input id="results-search" type="search" placeholder="Name or admission number">
+            </label>
+        </div>
+        <div class="results-table-wrap" role="region" aria-label="Saved student results" tabindex="0">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">Admission no.</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Session / term</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="results-list"></tbody>
+            </table>
+        </div>
+    </section>
 </main>
+
+<template id="subject-template">
+    <div class="subject-row">
+        <div class="field">
+            <label>Subject</label>
+            <input name="subject" type="text" placeholder="e.g. Mathematics" required>
+        </div>
+        <div class="field">
+            <label>Score (out of 100)</label>
+            <input name="score" type="number" min="0" max="100" step="1" inputmode="numeric" required>
+        </div>
+        <button class="remove-subject" type="button" aria-label="Remove this subject">&times;</button>
+    </div>
+</template>
+<script src="staff.js"></script>
 </body>
-
-
-
-
-
-
-
-
 </html>

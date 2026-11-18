@@ -454,4 +454,364 @@ main a {
     }
 }
 
+.results-page {
+    display: block;
+    min-height: 100vh;
+    color: #17243b;
+    background: #f2f5fa;
+}
+
+.results-page::before {
+    display: none;
+}
+
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem clamp(1rem, 5vw, 4rem);
+    color: #ffffff;
+    background: #071b3a;
+}
+
+.results-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: inherit;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.results-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.results-home {
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.results-home:hover,
+.results-home:focus-visible {
+    color: #ffd166;
+    text-decoration: underline;
+}
+
+.results-main {
+    width: min(100%, 1100px);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+.results-intro {
+    margin-bottom: 1.5rem;
+}
+
+.results-intro .results-eyebrow {
+    margin: 0 0 0.5rem;
+    color: #36547d;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.results-intro h1 {
+    color: #102747;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+.results-intro > p:last-child {
+    margin: 0.6rem 0 0;
+    color: #526179;
+    font-size: 1rem;
+}
+
+.results-card {
+    margin-bottom: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #dce4ef;
+    border-radius: 0.85rem;
+    background: #ffffff;
+    box-shadow: 0 0.5rem 1.5rem rgba(16, 39, 71, 0.07);
+}
+
+.results-card h2 {
+    margin: 0;
+    color: #102747;
+    font-size: 1.3rem;
+}
+
+.results-page form {
+    width: 100%;
+    max-width: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.student-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.results-page .field {
+    display: grid;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.results-page .field label,
+.search-field span {
+    color: #263b58;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.results-page .field input,
+.results-page .field select,
+.search-field input {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.4rem;
+    background: #ffffff;
+    color: #17243b;
+    font: inherit;
+}
+
+.results-page input:focus,
+.results-page select:focus {
+    border-color: #1c5ba5;
+    outline: 3px solid rgba(28, 91, 165, 0.18);
+}
+
+.subject-fieldset {
+    min-width: 0;
+    margin: 1.5rem 0 0;
+    padding: 1.1rem;
+    border: 1px solid #dce4ef;
+    border-radius: 0.6rem;
+}
+
+.subject-fieldset legend {
+    padding: 0 0.4rem;
+    color: #102747;
+    font-weight: 700;
+}
+
+.score-hint {
+    margin: 0 0 1rem;
+    color: #526179;
+    font-size: 0.9rem;
+}
+
+.subject-rows {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.subject-row {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(7rem, 1fr) 2.75rem;
+    align-items: end;
+    gap: 0.75rem;
+}
+
+.remove-subject {
+    min-height: 2.75rem;
+    border: 1px solid #d5deea;
+    border-radius: 0.4rem;
+    background: #ffffff;
+    color: #8c2f39;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.remove-subject:disabled {
+    color: #9aa6b5;
+    cursor: not-allowed;
+}
+
+.add-subject {
+    margin-top: 0.9rem;
+    padding: 0.55rem 0;
+    border: 0;
+    background: transparent;
+    color: #174f91;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.add-subject:hover,
+.add-subject:focus-visible {
+    text-decoration: underline;
+}
+
+.results-form-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.save-results {
+    min-height: 2.9rem;
+    padding: 0.7rem 1.25rem;
+    border: 0;
+    border-radius: 0.45rem;
+    background: #123b70;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.save-results:hover,
+.save-results:focus-visible {
+    background: #0b2f5b;
+}
+
+.save-results:disabled,
+.add-subject:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.results-message {
+    margin: 0;
+    color: #23603b;
+    font-size: 0.95rem;
+}
+
+.results-message.error {
+    color: #a12632;
+}
+
+.saved-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+}
+
+.saved-heading p {
+    margin: 0.4rem 0 0;
+    color: #526179;
+    font-size: 0.9rem;
+}
+
+.search-field {
+    display: grid;
+    gap: 0.4rem;
+    width: min(100%, 18rem);
+}
+
+.results-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e0e6ef;
+    border-radius: 0.5rem;
+}
+
+.results-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.results-table th,
+.results-table td {
+    padding: 0.8rem 0.75rem;
+    border-bottom: 1px solid #e7ecf3;
+    vertical-align: middle;
+}
+
+.results-table th {
+    background: #f5f7fb;
+    color: #263b58;
+    font-size: 0.85rem;
+}
+
+.results-table td {
+    color: #34445c;
+    font-size: 0.9rem;
+}
+
+.results-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.results-table .empty-results {
+    padding: 1.5rem;
+    color: #66758a;
+    text-align: center;
+}
+
+.delete-result {
+    padding: 0.35rem 0.6rem;
+    border: 1px solid #e4c4c7;
+    border-radius: 0.35rem;
+    background: #fff8f8;
+    color: #8c2f39;
+    font: inherit;
+    cursor: pointer;
+}
+
+.delete-result:hover,
+.delete-result:focus-visible {
+    background: #fbe9ea;
+}
+
+@media (max-width: 600px) {
+    .results-header {
+        align-items: flex-start;
+    }
+
+    .results-brand {
+        font-size: 0.9rem;
+    }
+
+    .results-home {
+        padding-top: 0.7rem;
+        white-space: nowrap;
+    }
+
+    .results-main {
+        padding: 1.75rem 1rem 3rem;
+    }
+
+    .student-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .subject-fieldset {
+        padding: 0.8rem;
+    }
+
+    .subject-row {
+        grid-template-columns: minmax(0, 1fr) minmax(6rem, 0.8fr) 2.5rem;
+        gap: 0.5rem;
+    }
+
+    .results-page .field label {
+        font-size: 0.82rem;
+    }
+}
+
 

@@ -9,7 +9,23 @@ const calculatorClose = document.getElementById("calculator-close");
 const pictureToggle = document.querySelector(".picture-toggle");
 const picturePanel = document.getElementById("picture-panel");
 const pictureClose = document.getElementById("picture-close");
+const resultsToggle = document.getElementById("results-toggle");
+const resultsPanel = document.getElementById("results-panel");
+const resultsClose = document.getElementById("results-close");
+const studentResultsForm = document.getElementById("student-results-form");
+const studentResultsMessage = document.getElementById("student-results-message");
+const studentResultsWrap = document.getElementById("student-results-wrap");
+const studentResultsList = document.getElementById("student-results-list");
 const logoutButton = document.getElementById("logout-button");
+const timetableToggle = document.getElementById("timetable-toggle");
+const timetablePanel = document.getElementById("timetable-panel");
+const timetableClose = document.getElementById("timetable-close");
+
+function hideResultsPanel() {
+  if (!resultsPanel || !resultsToggle) return;
+  resultsPanel.hidden = true;
+  resultsToggle.setAttribute("aria-expanded", "false");
+}
 
 if (logoutButton) {
   logoutButton.addEventListener("click", () => {
@@ -29,6 +45,11 @@ if (admissionsToggle && admissionsPanel && admissionsClose) {
         picturePanel.hidden = true;
         pictureToggle.setAttribute("aria-expanded", "false");
       }
+      if (timetablePanel && timetableToggle) {
+        timetablePanel.hidden = true;
+        timetableToggle.setAttribute("aria-expanded", "false");
+      }
+      hideResultsPanel();
     }
     admissionsPanel.hidden = !isOpen;
     admissionsToggle.setAttribute("aria-expanded", String(isOpen));
@@ -45,6 +66,150 @@ if (admissionsToggle && admissionsPanel && admissionsClose) {
   });
 }
 
+if (resultsToggle && resultsPanel && resultsClose) {
+  function setResultsOpen(isOpen) {
+    if (isOpen) {
+      if (admissionsPanel && admissionsToggle) {
+        admissionsPanel.hidden = true;
+        admissionsToggle.setAttribute("aria-expanded", "false");
+      }
+      if (timetablePanel && timetableToggle) {
+        timetablePanel.hidden = true;
+        timetableToggle.setAttribute("aria-expanded", "false");
+      }
+      if (calculatorPanel && calculatorToggle) {
+        calculatorPanel.hidden = true;
+        calculatorToggle.setAttribute("aria-expanded", "false");
+      }
+      if (picturePanel && pictureToggle) {
+        picturePanel.hidden = true;
+        pictureToggle.setAttribute("aria-expanded", "false");
+      }
+    }
+    resultsPanel.hidden = !isOpen;
+    resultsToggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) resultsClose.focus();
+    else resultsToggle.focus();
+  }
+
+  resultsToggle.addEventListener("click", () => {
+    setResultsOpen(resultsPanel.hidden);
+  });
+
+  resultsClose.addEventListener("click", () => {
+    setResultsOpen(false);
+  });
+}
+
+if (studentResultsForm && studentResultsMessage && studentResultsWrap && studentResultsList) {
+  const admissionNumberInput = studentResultsForm.querySelector("#results-admission-number");
+  admissionNumberInput.addEventListener("input", () => {
+    studentResultsWrap.hidden = true;
+    studentResultsList.replaceChildren();
+    studentResultsMessage.textContent = "Search again to view results for this admission number.";
+  });
+
+  studentResultsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!studentResultsForm.reportValidity()) return;
+
+    studentResultsWrap.hidden = true;
+    studentResultsList.replaceChildren();
+    const admissionNumber = admissionNumberInput.value.trim().toLowerCase();
+    if (!admissionNumber) {
+      studentResultsMessage.textContent = "Enter your admission number to search.";
+      admissionNumberInput.focus();
+      return;
+    }
+    let savedResults;
+
+    try {
+      const storedResults = localStorage.getItem("olanipekunStudentResults");
+      savedResults = storedResults === null ? [] : JSON.parse(storedResults);
+      if (!Array.isArray(savedResults) || !savedResults.every((result) =>
+        result &&
+        typeof result.studentName === "string" &&
+        typeof result.studentId === "string" &&
+        typeof result.studentClass === "string" &&
+        typeof result.session === "string" &&
+        typeof result.term === "string" &&
+        typeof result.subject === "string" &&
+        Number.isInteger(result.score) &&
+        result.score >= 0 &&
+        result.score <= 100
+      )) {
+        throw new Error("Saved results have an invalid format.");
+      }
+    } catch (error) {
+      studentResultsMessage.textContent = "Results could not be loaded from this browser. Please contact the school office.";
+      return;
+    }
+
+    const matchingResults = savedResults.filter((result) =>
+      result.studentId.trim().toLowerCase() === admissionNumber
+    );
+    if (matchingResults.length === 0) {
+      studentResultsMessage.textContent = savedResults.length === 0
+        ? "No results have been saved yet."
+        : "No results were found for that admission number.";
+      return;
+    }
+
+    matchingResults.forEach((result) => {
+      const row = document.createElement("tr");
+      [
+        result.studentName,
+        result.studentClass,
+        result.session,
+        result.term,
+        result.subject,
+        result.score + " / 100"
+      ].forEach((value) => {
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      studentResultsList.appendChild(row);
+    });
+
+    studentResultsWrap.hidden = false;
+    studentResultsMessage.textContent = "Found " + matchingResults.length +
+      (matchingResults.length === 1 ? " subject result." : " subject results.");
+  });
+}
+
+if (timetableToggle && timetablePanel && timetableClose) {
+  function setTimetableOpen(isOpen) {
+    if (isOpen) {
+      if (admissionsPanel && admissionsToggle) {
+        admissionsPanel.hidden = true;
+        admissionsToggle.setAttribute("aria-expanded", "false");
+      }
+      if (calculatorPanel && calculatorToggle) {
+        calculatorPanel.hidden = true;
+        calculatorToggle.setAttribute("aria-expanded", "false");
+      }
+      if (picturePanel && pictureToggle) {
+        picturePanel.hidden = true;
+        pictureToggle.setAttribute("aria-expanded", "false");
+      }
+      hideResultsPanel();
+    }
+    timetablePanel.hidden = !isOpen;
+    timetableToggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) timetableClose.focus();
+    else timetableToggle.focus();
+  }
+
+  timetableToggle.addEventListener("click", () => {
+    setTimetableOpen(timetablePanel.hidden);
+  });
+
+  timetableClose.addEventListener("click", () => {
+    setTimetableOpen(false);
+  });
+}
+
 if (pictureToggle && picturePanel && pictureClose) {
   function setPictureOpen(isOpen) {
     if (isOpen && admissionsPanel && admissionsToggle) {
@@ -55,6 +220,11 @@ if (pictureToggle && picturePanel && pictureClose) {
       calculatorPanel.hidden = true;
       calculatorToggle.setAttribute("aria-expanded", "false");
     }
+    if (isOpen && timetablePanel && timetableToggle) {
+      timetablePanel.hidden = true;
+      timetableToggle.setAttribute("aria-expanded", "false");
+    }
+    if (isOpen) hideResultsPanel();
     picturePanel.hidden = !isOpen;
     pictureToggle.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) pictureClose.focus();
@@ -85,6 +255,11 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
       picturePanel.hidden = true;
       pictureToggle.setAttribute("aria-expanded", "false");
     }
+    if (isOpen && timetablePanel && timetableToggle) {
+      timetablePanel.hidden = true;
+      timetableToggle.setAttribute("aria-expanded", "false");
+    }
+    if (isOpen) hideResultsPanel();
     calculatorPanel.hidden = !isOpen;
     calculatorToggle.setAttribute("aria-expanded", String(isOpen));
     if (isOpen) {
@@ -196,6 +371,16 @@ if (displayEl && historyEl && calculatorToggle && calculatorPanel && calculatorC
         admissionsPanel.hidden = true;
         admissionsToggle.setAttribute("aria-expanded", "false");
         admissionsToggle.focus();
+      }
+      else if (timetablePanel && !timetablePanel.hidden && timetableToggle) {
+        timetablePanel.hidden = true;
+        timetableToggle.setAttribute("aria-expanded", "false");
+        timetableToggle.focus();
+      }
+      else if (resultsPanel && !resultsPanel.hidden && resultsToggle) {
+        resultsPanel.hidden = true;
+        resultsToggle.setAttribute("aria-expanded", "false");
+        resultsToggle.focus();
       }
       else if (!calculatorPanel.hidden) setCalculatorOpen(false);
       else if (picturePanel && !picturePanel.hidden && pictureToggle && pictureClose) {

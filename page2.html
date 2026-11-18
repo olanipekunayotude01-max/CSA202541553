@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Calculator</title>
+<title>Student Portal | Olanipekun International Academy</title>
 <link rel="stylesheet" href="calcstyles.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
 <nav class="sidebar-nav" aria-label="Main navigation">
 <button class="sidebar-action" id="admissions-toggle" type="button" aria-controls="admissions-panel" aria-expanded="false">Admissions</button>
 <button class="sidebar-action" type="button">News and Events</button>
-<button class="sidebar-action" type="button">Results</button>
-<button class="sidebar-action" type="button">Timetable</button>
+<button class="sidebar-action" id="results-toggle" type="button" aria-controls="results-panel" aria-expanded="false">Results</button>
+<button class="sidebar-action" id="timetable-toggle" type="button" aria-controls="timetable-panel" aria-expanded="false">Timetable</button>
 <button class="calculator-toggle" id="calculator-toggle" type="button" aria-controls="calculator-panel" aria-expanded="false">Calculator</button>
 <button class="picture-toggle" id="picture-toggle" type="button" aria-controls="picture-panel" aria-expanded="false">Picture</button>
 <button class="logout-button" id="logout-button" type="button">Logout</button>
@@ -24,6 +24,37 @@
 <p>Select an option from the sidebar.</p>
 
 </main>
+
+<section class="results-panel" id="results-panel" aria-label="Check student results" hidden>
+<div class="panel-header">
+<h2>Check your results</h2>
+<button class="panel-close" id="results-close" type="button" aria-label="Close results">&times;</button>
+</div>
+<p class="results-intro">Enter your admission number to view your saved subject scores.</p>
+<form id="student-results-form" class="student-results-form">
+<label for="results-admission-number">Admission number</label>
+<div class="results-lookup-controls">
+<input id="results-admission-number" name="studentId" type="text" autocomplete="off" required>
+<button type="submit">Find results</button>
+</div>
+</form>
+<p id="student-results-message" class="student-results-message" role="status" aria-live="polite">Your results will appear here after you search.</p>
+<div id="student-results-wrap" class="student-results-wrap" role="region" aria-label="Your subject results" tabindex="0" hidden>
+<table class="student-results-table">
+<thead>
+<tr>
+<th scope="col">Student</th>
+<th scope="col">Class</th>
+<th scope="col">Academic session</th>
+<th scope="col">Term</th>
+<th scope="col">Subject</th>
+<th scope="col">Score</th>
+</tr>
+</thead>
+<tbody id="student-results-list"></tbody>
+</table>
+</div>
+</section>
 
 <section class="admissions-panel" id="admissions-panel" aria-label="Admissions" hidden>
 <div class="panel-header">
@@ -49,6 +80,40 @@
 <li>Parent or guardian contact information</li>
 </ul>
 </section>
+</section>
+
+<section class="timetable-panel" id="timetable-panel" aria-label="Weekly school timetable" hidden>
+<div class="panel-header">
+<h2>Weekly Timetable</h2>
+<button class="panel-close" id="timetable-close" type="button" aria-label="Close timetable">&times;</button>
+</div>
+<div class="timetable-scroll" role="region" aria-label="Monday to Friday class schedule" tabindex="0">
+<table class="timetable">
+<caption>Sample secondary school timetable</caption>
+<thead>
+<tr>
+<th scope="col">Time</th>
+<th scope="col">Monday</th>
+<th scope="col">Tuesday</th>
+<th scope="col">Wednesday</th>
+<th scope="col">Thursday</th>
+<th scope="col">Friday</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">8:00–8:40</th><td>Mathematics</td><td>English</td><td>Biology</td><td>Mathematics</td><td>English</td></tr>
+<tr><th scope="row">8:40–9:20</th><td>English</td><td>Mathematics</td><td>Chemistry</td><td>Physics</td><td>Geography</td></tr>
+<tr><th scope="row">9:20–10:00</th><td>Biology</td><td>Physics</td><td>Mathematics</td><td>English</td><td>Civic Education</td></tr>
+<tr class="timetable-break"><th scope="row">10:00–10:20</th><td colspan="5">Break</td></tr>
+<tr><th scope="row">10:20–11:00</th><td>Chemistry</td><td>Geography</td><td>English</td><td>Biology</td><td>Mathematics</td></tr>
+<tr><th scope="row">11:00–11:40</th><td>Physics</td><td>Literature</td><td>Computer Studies</td><td>Economics</td><td>Basic Technology</td></tr>
+<tr><th scope="row">11:40–12:20</th><td>Geography</td><td>Civic Education</td><td>Literature</td><td>Computer Studies</td><td>Business Studies</td></tr>
+<tr class="timetable-break"><th scope="row">12:20–1:00</th><td colspan="5">Lunch</td></tr>
+<tr><th scope="row">1:00–1:40</th><td>Computer Studies</td><td>Basic Technology</td><td>Economics</td><td>Literature</td><td>Biology</td></tr>
+<tr><th scope="row">1:40–2:20</th><td>Physical Education</td><td>Business Studies</td><td>Physical Education</td><td>Civic Education</td><td>Arts and Culture</td></tr>
+</tbody>
+</table>
+</div>
 </section>
 
 <section class="picture-panel" id="picture-panel" aria-label="Picture" hidden>
