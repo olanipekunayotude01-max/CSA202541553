@@ -98,7 +98,15 @@ text-align: center;
 
 .workspace h1 {
 margin: 0;
-font-size: clamp(28px, 4vw, 44px);
+}
+
+.workspace-logo {
+display: block;
+width: clamp(150px, 25vw, 260px);
+max-width: 100%;
+height: auto;
+margin: 0 auto;
+border-radius: 50%;
 }
 
 .workspace p {
