@@ -15,7 +15,7 @@
 </div>
 
 <article>
-<h1>OLANIPEKUN SECONDARY <br>SCHOOL PORTAL</h1>
+<h1>OLANIPEKUN SECONDARY SCHOOL PORTAL</h1>
 <P>Empowering Minds, Shaping Futures</P>
 </article>
 
@@ -26,33 +26,43 @@
 
 <form id="login-form">
     <fieldset class="role-switch">
-        <legend>Sign in as:</legend>
+        <legend>Sign in as</legend>
         <label class="role-option"><input type="radio" name="login-role" value="student" checked><span>Student</span></label>
         <label class="role-option"><input type="radio" name="login-role" value="staff"><span>Staff</span></label>
     </fieldset>
-    <label for="username" class="email">Username:</label><br>
-    <input type="text" id="username" name="username" autocomplete="username" required><br><br>
-    <label for="password" class="password" id="password-label">Admission number:</label><br>
-    <input type="password" id="password" name="password" autocomplete="current-password" required><br><br>
+    <label for="username" class="email">Username</label><br>
+    <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required><br><br>
+    <label for="password" class="password">Password</label><br>
+    <div class="password-control">
+        <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+        <button class="password-toggle" type="button" aria-controls="password" aria-label="Show password" aria-pressed="false">Show</button>
+    </div><br><br>
     <button type="submit" class="login-btn">Login</button>
+    <p class="forgot-password"><a href="contact.html">Forgot password? Contact the school office.</a></p>
     <p id="login-error" role="alert" hidden>Incorrect username or password.</p>
     <p id="login-message" role="status" aria-live="polite" hidden></p>
 </form>
 
 <form id="register-form" hidden>
     <fieldset class="role-switch">
-        <legend>Create account as:</legend>
+        <legend>Create account as</legend>
         <label class="role-option"><input type="radio" name="account-role" value="student" checked><span>Student</span></label>
         <label class="role-option"><input type="radio" name="account-role" value="staff"><span>Staff</span></label>
     </fieldset>
-    <label for="register-username" class="email">Username:</label><br>
-    <input type="text" id="register-username" name="username" autocomplete="username" required><br><br>
-    <p class="auth-note" id="admission-number-note">A unique four-digit admission number will be assigned after account creation.</p>
-    <div id="staff-password-fields" hidden>
-        <label for="register-password" class="password">Password (at least 8 characters):</label><br>
-        <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" required disabled><br><br>
-        <label for="register-password-confirm" class="password">Confirm password:</label><br>
-        <input type="password" id="register-password-confirm" name="password-confirm" autocomplete="new-password" minlength="8" required disabled><br><br>
+    <label for="register-username" class="email">Username</label><br>
+    <input type="text" id="register-username" name="username" autocomplete="username" placeholder="Choose a username" required><br><br>
+    <p class="auth-note">Student accounts receive an admission number for accessing results. All accounts sign in with a username and password.</p>
+    <div id="account-password-fields">
+        <label for="register-password" class="password">Create password (at least 8 characters)</label><br>
+        <div class="password-control">
+            <input type="password" id="register-password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+            <button class="password-toggle" type="button" aria-controls="register-password" aria-label="Show password" aria-pressed="false">Show</button>
+        </div><br><br>
+        <label for="register-password-confirm" class="password">Confirm password</label><br>
+        <div class="password-control">
+            <input type="password" id="register-password-confirm" name="password-confirm" autocomplete="new-password" placeholder="Re-enter your password" minlength="8" required>
+            <button class="password-toggle" type="button" aria-controls="register-password-confirm" aria-label="Show password" aria-pressed="false">Show</button>
+        </div><br><br>
     </div>
     <button type="submit" class="login-btn">Create account</button>
     <p id="register-message" role="status" aria-live="polite" hidden></p>
@@ -62,11 +72,6 @@
 
 <footer>
     <section>
-        <ul class="akai">
-            <li>Secure</li>
-            <li>Reliable</li>
-            <li>Built for Education</li>
-        </ul>
         <nav>
 <header class="messi">
        <ol class="items">

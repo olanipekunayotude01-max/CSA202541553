@@ -7,9 +7,6 @@ const registerForm = document.getElementById("register-form");
 const registerMessage = document.getElementById("register-message");
 const showLoginButton = document.getElementById("show-login");
 const showRegisterButton = document.getElementById("show-register");
-const staffPasswordFields = document.getElementById("staff-password-fields");
-const admissionNumberNote = document.getElementById("admission-number-note");
-const loginPasswordLabel = document.getElementById("password-label");
 
 const ACCOUNT_STORAGE_KEY = "olanipekunPortalAccounts";
 const PASSWORD_HASH_ITERATIONS = 210000;
@@ -43,6 +40,7 @@ function readAccounts() {
         (account.role === "student" || account.role === "staff") &&
         typeof account.salt === "string" &&
         typeof account.passwordHash === "string" &&
+        (account.credentialVersion === undefined || account.credentialVersion === 2) &&
         (account.studentCode === undefined ||
             (account.role === "student" && typeof account.studentCode === "string" &&
                 /^\d{4}$/.test(account.studentCode))) &&
@@ -127,36 +125,49 @@ function setAuthMode(mode) {
     loginError.hidden = true;
     loginMessage.hidden = true;
     registerMessage.hidden = true;
+    document.querySelectorAll("#login-form input, #register-form input").forEach((input) => {
+        input.removeAttribute("aria-invalid");
+    });
 }
 
 if (loginForm && loginError && usernameInput && passwordInput &&
-    registerForm && registerMessage && showLoginButton && showRegisterButton && loginMessage &&
-    staffPasswordFields && admissionNumberNote && loginPasswordLabel) {
-    function updateRegisterRoleFields() {
-        const role = registerForm.querySelector('input[name="account-role"]:checked')?.value ?? "student";
-        const isStaff = role === "staff";
-        staffPasswordFields.hidden = !isStaff;
-        admissionNumberNote.hidden = isStaff;
-        staffPasswordFields.querySelectorAll("input").forEach((input) => {
-            input.disabled = !isStaff;
+    registerForm && registerMessage && showLoginButton && showRegisterButton && loginMessage) {
+
+    document.querySelectorAll(".password-toggle").forEach((toggle) => {
+        const passwordField = document.getElementById(toggle.getAttribute("aria-controls"));
+        if (!(passwordField instanceof HTMLInputElement)) {
+            throw new Error("A password visibility control is missing its input field.");
+        }
+
+        const updateToggle = () => {
+            const isVisible = passwordField.type === "text";
+            toggle.textContent = isVisible ? "Hide" : "Show";
+            toggle.setAttribute("aria-label", isVisible ? "Hide password" : "Show password");
+            toggle.setAttribute("aria-pressed", String(isVisible));
+        };
+
+        toggle.addEventListener("click", () => {
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+            updateToggle();
         });
-    }
 
-    function updateLoginRoleLabel() {
-        const role = loginForm.querySelector('input[name="login-role"]:checked')?.value ?? "student";
-        const isStudent = role === "student";
-        loginPasswordLabel.textContent = isStudent ? "Admission number:" : "Password:";
-        passwordInput.inputMode = isStudent ? "numeric" : "text";
-    }
+        if (passwordField.form === registerForm) {
+            registerForm.addEventListener("reset", () => {
+                passwordField.type = "password";
+                updateToggle();
+            });
+        }
+    });
 
-    registerForm.querySelectorAll('input[name="account-role"]').forEach((input) => {
-        input.addEventListener("change", updateRegisterRoleFields);
-    });
-    loginForm.querySelectorAll('input[name="login-role"]').forEach((input) => {
-        input.addEventListener("change", updateLoginRoleLabel);
-    });
-    updateRegisterRoleFields();
-    updateLoginRoleLabel();
+    document.querySelectorAll("#login-form input:not([type='radio']), #register-form input:not([type='radio'])")
+        .forEach((input) => {
+            input.addEventListener("invalid", () => {
+                input.setAttribute("aria-invalid", "true");
+            });
+            input.addEventListener("input", () => {
+                input.removeAttribute("aria-invalid");
+            });
+        });
 
     showLoginButton.addEventListener("click", () => {
         setAuthMode("login");
@@ -172,8 +183,9 @@ if (loginForm && loginError && usernameInput && passwordInput &&
         event.preventDefault();
 
         const username = usernameInput.value.trim().toLowerCase();
-        const password = passwordInput.value.trim();
+        const password = passwordInput.value;
         const role = loginForm.querySelector('input[name="login-role"]:checked')?.value ?? "student";
+        const submitButton = loginForm.querySelector('button[type="submit"]');
 
         loginError.hidden = true;
         loginMessage.hidden = true;
@@ -184,21 +196,28 @@ if (loginForm && loginError && usernameInput && passwordInput &&
             return;
         }
 
+        submitButton.disabled = true;
         try {
             const account = readAccounts().find((savedAccount) =>
                 savedAccount.username === username && savedAccount.role === role
             );
+            if (account && role === "student" && account.credentialVersion !== 2) {
+                throw new Error("This student account was created before password sign-in was introduced. Contact the school office to update your credentials.");
+            }
             if (account && await hashPassword(password, fromBase64(account.salt)) === account.passwordHash) {
                 sessionStorage.setItem("portalRole", role);
                 window.location.href = role === "staff" ? "staff.html" : "page2.html";
                 return;
             }
             loginError.textContent = "Incorrect username or password.";
+            usernameInput.setAttribute("aria-invalid", "true");
+            passwordInput.setAttribute("aria-invalid", "true");
         } catch (error) {
             loginError.textContent = error.message || "Sign in could not be completed.";
         }
 
         loginError.hidden = false;
+        submitButton.disabled = false;
     });
 
     registerForm.addEventListener("submit", async (event) => {
@@ -212,19 +231,19 @@ if (loginForm && loginError && usernameInput && passwordInput &&
         const submitButton = registerForm.querySelector('button[type="submit"]');
 
         registerMessage.hidden = true;
-        if (role === "staff") {
-            const password = registerPasswordInput.value;
-            if (password !== password.trim()) {
-                registerMessage.textContent = "Password cannot start or end with spaces.";
-                registerMessage.hidden = false;
-                return;
-            }
-            if (password !== confirmPasswordInput.value) {
-                registerMessage.textContent = "The passwords do not match.";
-                registerMessage.hidden = false;
-                confirmPasswordInput.focus();
-                return;
-            }
+        const password = registerPasswordInput.value;
+        if (password !== password.trim()) {
+            registerMessage.textContent = "Password cannot start or end with spaces.";
+            registerMessage.hidden = false;
+            registerPasswordInput.setAttribute("aria-invalid", "true");
+            return;
+        }
+        if (password !== confirmPasswordInput.value) {
+            registerMessage.textContent = "The passwords do not match.";
+            registerMessage.hidden = false;
+            confirmPasswordInput.setAttribute("aria-invalid", "true");
+            confirmPasswordInput.focus();
+            return;
         }
 
         submitButton.disabled = true;
@@ -232,6 +251,7 @@ if (loginForm && loginError && usernameInput && passwordInput &&
             const accounts = readAccounts();
             if (username === DEFAULT_USERNAME ||
                 accounts.some((account) => account.username === username)) {
+                registerUsernameInput.setAttribute("aria-invalid", "true");
                 throw new Error("An account already uses that email or username.");
             }
 
@@ -240,10 +260,10 @@ if (loginForm && loginError && usernameInput && passwordInput &&
             }
             const admissionNumber = role === "student" ? generateAdmissionNumber(accounts) : null;
             const salt = window.crypto.getRandomValues(new Uint8Array(16));
-            const password = role === "student" ? admissionNumber : registerPasswordInput.value;
             const account = {
                 username,
                 role,
+                credentialVersion: 2,
                 salt: toBase64(salt),
                 passwordHash: await hashPassword(password, salt)
             };
@@ -252,10 +272,8 @@ if (loginForm && loginError && usernameInput && passwordInput &&
             localStorage.setItem(ACCOUNT_STORAGE_KEY, JSON.stringify(accounts));
 
             registerForm.reset();
-            updateRegisterRoleFields();
             setAuthMode("login");
             loginForm.querySelector('input[name="login-role"][value="' + role + '"]').checked = true;
-            updateLoginRoleLabel();
             usernameInput.value = username;
             if (admissionNumber === null) {
                 loginMessage.textContent = "Account created. Sign in with your new account.";
@@ -264,7 +282,7 @@ if (loginForm && loginError && usernameInput && passwordInput &&
                 const admissionNumberDisplay = document.createElement("strong");
                 admissionNumberDisplay.className = "admission-number-display";
                 admissionNumberDisplay.textContent = admissionNumber;
-                loginMessage.append(admissionNumberDisplay, document.createTextNode("Save it; you will need it to sign in and access your results."));
+                loginMessage.append(admissionNumberDisplay, document.createTextNode("Save it for accessing your results. Sign in with your username and password."));
             }
             loginMessage.hidden = false;
             document.getElementById("password").focus();
@@ -280,14 +298,18 @@ if (loginForm && loginError && usernameInput && passwordInput &&
         input.addEventListener("input", () => {
             loginError.hidden = true;
             loginMessage.hidden = true;
+            usernameInput.removeAttribute("aria-invalid");
+            passwordInput.removeAttribute("aria-invalid");
         });
     });
-
     [document.getElementById("register-username"),
         document.getElementById("register-password"),
         document.getElementById("register-password-confirm")].forEach((input) => {
         input.addEventListener("input", () => {
             registerMessage.hidden = true;
+            registerForm.querySelectorAll("input").forEach((field) => {
+                field.removeAttribute("aria-invalid");
+            });
         });
     });
 }

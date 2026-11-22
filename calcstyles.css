@@ -42,11 +42,33 @@ font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
 }
 
 .topbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
 position: fixed;
 z-index: 1;
 top: 0;
 left: 0;
-padding: 16px;
+width: 100%;
+padding: 16px clamp(20px, 6vw, 80px);
+}
+
+.topbar-brand {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+color: var(--text);
+font-size: 15px;
+font-weight: 700;
+text-decoration: none;
+}
+
+.topbar-brand span {
+padding-left: 10px;
+border-left: 1px solid currentColor;
+font-weight: 500;
+opacity: 0.75;
 }
 
 .menu-toggle {
@@ -199,11 +221,40 @@ text-align: left;
 }
 
 .portal-card {
+min-width: 0;
 padding: 22px;
 border: 1px solid var(--key);
 border-radius: 16px;
 background: var(--body);
 box-shadow: 0 8px 24px rgba(31, 42, 55, 0.06);
+transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.portal-card:hover,
+.portal-card:focus-within {
+transform: translateY(-5px);
+border-color: var(--op);
+box-shadow: 0 14px 30px rgba(31, 42, 55, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+.portal-card {
+transition: none;
+}
+
+.portal-card:hover,
+.portal-card:focus-within {
+transform: none;
+}
+}
+
+.portal-card-label {
+display: block;
+margin-bottom: 12px;
+color: var(--op);
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.1em;
 }
 
 .portal-card h3 {
@@ -556,6 +607,20 @@ button.clear { background: var(--clear); color: #fff; }
 button.wide { grid-column: span 2; }
 
 @media (max-width: 700px) {
+.topbar {
+padding-right: 16px;
+padding-left: 16px;
+}
+
+.topbar-brand {
+gap: 7px;
+font-size: 13px;
+}
+
+.topbar-brand span {
+padding-left: 7px;
+}
+
 .drawer-nav a,
 .nav-action,
 .calculator-toggle,
