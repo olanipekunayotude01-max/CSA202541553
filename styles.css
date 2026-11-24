@@ -295,6 +295,13 @@ footer {
     box-shadow: 0 -0.75rem 2rem rgba(0, 0, 0, 0.2);
 }
 
+.copyright {
+    margin: 0 auto 1rem;
+    color: #e7eef8;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
 .akai {
     display: flex;
     flex-wrap: wrap;
